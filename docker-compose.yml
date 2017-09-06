@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  # wordpress
+  wordpress:
+    build: ./wordpress
+    restart: always
+    volumes:
+      - www-data:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=${WP_DB_HOST}
+      - WORDPRESS_DB_USER=${WP_DB_USER}
+      - WORDPRESS_DB_NAME=${WP_DB_NAME}
+      - WORDPRESS_DB_PASSWORD=${WP_DB_PASSWORD}
+      - WORDPRESS_DB_PREFIX=${WP_DB_PREFIX}
+      - W3CIE_THEME=${W3CIE_THEME}
+      - W3CIE_PLUGINS=${W3CIE_PLUGINS}
+
+volumes:
+  www-data:
