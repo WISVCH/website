@@ -16,5 +16,16 @@ services:
       - W3CIE_THEME=${W3CIE_THEME}
       - W3CIE_PLUGINS=${W3CIE_PLUGINS}
 
+  nginx:
+    image: raulr/nginx-wordpress
+    links:
+     - wordpress
+    volumes:
+     - www-data:/var/www/html
+    ports:
+     - "8080:80"
+    environment:
+      POST_MAX_SIZE: 128m
+      
 volumes:
   www-data:
