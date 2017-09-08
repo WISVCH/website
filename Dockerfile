@@ -3,7 +3,7 @@ LABEL maintainer="W3Cie \"w3cie@ch.tudelft.nl\""
 
 # Install additional tools.
 # RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
-    # apk --no-cache add shadow postfix
+#     apk --no-cache add git
 
 # Download and install WP-CLI
 RUN curl  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
