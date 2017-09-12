@@ -16,7 +16,7 @@ services:
       - W3CIE_THEME=${W3CIE_THEME}
       - W3CIE_PLUGINS=${W3CIE_PLUGINS}
     ports:
-     - 8080:80
+     - 80:80
       
 volumes:
   www-data:
