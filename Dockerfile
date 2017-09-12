@@ -1,6 +1,11 @@
 FROM wordpress:php7.1-apache
 LABEL maintainer="W3Cie \"w3cie@ch.tudelft.nl\""
 
+# CH CA certificate for LDAP and MySQL TLS connections
+RUN curl -so /usr/local/share/ca-certificates/wisvch.crt https://ch.tudelft.nl/certs/wisvch.crt && \
+    chmod 644 /usr/local/share/ca-certificates/wisvch.crt && \
+    update-ca-certificates
+
 # Download and install WP-CLI
 RUN curl  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp-cli.phar && \
