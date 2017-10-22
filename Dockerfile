@@ -1,9 +1,13 @@
 FROM wordpress:php7.1-apache
 LABEL maintainer="W3Cie \"w3cie@ch.tudelft.nl\""
 
-# CH CA certificate for LDAP and MySQL TLS connections
-RUN curl -so /usr/local/share/ca-certificates/wisvch.crt https://ch.tudelft.nl/certs/wisvch.crt && \
-    chmod 644 /usr/local/share/ca-certificates/wisvch.crt && \
+# Install required packages
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+	curl cron nano
+
+# Install CH CA certificate
+RUN curl -so /etc/ssl/certs/wisvch.crt https://ch.tudelft.nl/certs/wisvch.crt && \
+    chmod 644 /etc/ssl/certs/wisvch.crt && \
     update-ca-certificates
 
 # Download and install WP-CLI
@@ -11,16 +15,19 @@ RUN curl  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
     chmod +x wp-cli.phar && \
     mv    wp-cli.phar /usr/local/bin/wp
 
-# Custom php.ini for sendmail path
-COPY php.ini       /usr/local/etc/php/conf.d/php.ini
-COPY wp-config.php /var/www/wp-config-custom.php
+
+COPY php/php.ini             /usr/local/etc/php/conf.d/php.ini
+COPY wordpress/wp-config.php /var/www/wp-config-custom.php
+COPY cron/cron.conf          /etc/cron.d/wordpress
+RUN  chmod 600               /etc/cron.d/wordpress
+
 
 WORKDIR /var/www/html
 
 # Custom entrypoint to install WP & replace wp-config
 # As we replace the original entrypoint from wordpress Dockerfile
 # we need to run that also in our replacement to actually install
-# the wordpress and start the PHP.
+# WordPress and start PHP.
 COPY ./entrypoint.sh /custom-entrypoint.sh
 RUN  chmod +x        /custom-entrypoint.sh
 
