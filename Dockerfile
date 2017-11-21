@@ -3,7 +3,7 @@ LABEL maintainer="W3Cie \"w3cie@ch.tudelft.nl\""
 
 # Install required packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-	curl cron nano
+	curl cron nano sendmail-bin sendmail
 
 # Install CH CA certificate
 RUN curl -so /etc/ssl/certs/wisvch.crt https://ch.tudelft.nl/certs/wisvch.crt && \
