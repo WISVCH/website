@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Start rsyslog
+service rsyslog start
+
 # mute CMD from official wordpress image entrypoint.
 sed -i -e 's/^exec "$@"/#exec "$@"/g' /usr/local/bin/docker-entrypoint.sh
 
