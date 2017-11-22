@@ -15,7 +15,7 @@ RUN curl  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
     chmod +x wp-cli.phar && \
     mv    wp-cli.phar /usr/local/bin/wp
 
-RUN touch /var/log/php/error.log && chown www-data:www-data /var/log/php/error.log
+RUN mkdir /var/log/php && touch /var/log/php/error.log && chown www-data:www-data /var/log/php/error.log
 
 COPY php/php.ini             /usr/local/etc/php/conf.d/php.ini
 COPY wordpress/wp-config.php /var/www/wp-config-custom.php
