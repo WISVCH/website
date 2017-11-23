@@ -18,10 +18,14 @@ RUN curl  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
 RUN mkdir /var/log/php && touch /var/log/php/error.log && chown www-data:www-data /var/log/php/error.log
 
 COPY php/php.ini             /usr/local/etc/php/conf.d/php.ini
+
 COPY wordpress/wp-config.php /var/www/wp-config-custom.php
+
 COPY cron/cron.conf          /etc/cron.d/wordpress
 RUN  chmod 600               /etc/cron.d/wordpress
 
+COPY sendmail/sendmail.mc    /etc/mail/sendmail.mc
+RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 
 WORKDIR /var/www/html
 
