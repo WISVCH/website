@@ -8,8 +8,11 @@ define('DISABLE_WP_CRON', true);
 define('WP_DEBUG', false);
 define('WP_DEBUG_DISPLAY', false);
 
-define('FORCE_SSL_ADMIN', true);
+// Strip port from HTTP_HOST
+$_SERVER['HTTP_HOST'] = substr($_SERVER['HTTP_HOST'], 0, strrpos($_SERVER['HTTP_HOST'], ':'));
 
+// Enable HTTPS
+define('FORCE_SSL_ADMIN', true);
 if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
 	$_SERVER['HTTPS'] = 'on';
 	$_SERVER['SERVER_PORT'] = 443;
