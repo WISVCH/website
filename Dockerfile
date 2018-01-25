@@ -1,5 +1,4 @@
-FROM wordpress:php7.1-apache
-LABEL maintainer="W3Cie \"w3cie@ch.tudelft.nl\""
+FROM wordpress:php7.2-apache
 
 # Install required packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
