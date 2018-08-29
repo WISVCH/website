@@ -71,6 +71,11 @@ echo "Setting permissions..."
 chown -R www-data /var/www/html/*
 chown    www-data /var/www/wp-config-custom.php
 
+# Flush permalinks
+echo
+echo "Flushing permalinks..."
+wp rewrite flush
+
 echo
 echo "...done!"
 
