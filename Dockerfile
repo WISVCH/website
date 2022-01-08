@@ -1,4 +1,4 @@
-FROM wordpress:php8.1-apache
+FROM wordpress:php7.2-apache
 
 # Install required packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
