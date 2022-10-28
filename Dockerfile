@@ -20,6 +20,9 @@ COPY php/php.ini             /usr/local/etc/php/conf.d/php.ini
 
 COPY wordpress/wp-config.php /var/www/wp-config-custom.php
 
+# Overwrite .htaccess
+COPY wordpress/.htaccess     /var/www/.htaccess
+
 COPY cron/cron.conf          /etc/cron.d/wordpress
 RUN  chmod 600               /etc/cron.d/wordpress
 

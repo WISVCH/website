@@ -64,6 +64,13 @@ echo "Removing leftover theme..."
 
 wp theme delete $(wp theme list --field=name --status=inactive --allow-root) --allow-root
 
+
+# Copy .htaccess
+echo
+echo "Copying .htaccess..."
+
+cp /var/www/.htaccess /var/www/html/.htaccess
+
 # Fix permissions
 echo
 echo "Setting permissions..."
