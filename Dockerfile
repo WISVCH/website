@@ -1,8 +1,8 @@
-FROM wordpress:php7.2-apache
+FROM wordpress:latest
 
 # Install required packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-	curl cron nano sendmail-bin sendmail rsyslog
+    curl cron nano sendmail-bin sendmail rsyslog
 
 # Install CH CA certificate
 RUN curl -so /etc/ssl/certs/wisvch.crt https://ch.tudelft.nl/certs/wisvch.crt && \
