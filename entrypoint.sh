@@ -81,7 +81,7 @@ chown    www-data /var/www/wp-config-custom.php
 # Flush permalinks
 echo
 echo "Flushing permalinks..."
-wp rewrite flush
+wp rewrite flush --allow-root
 
 echo
 echo "...done!"
