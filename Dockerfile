@@ -4,11 +4,6 @@ FROM wordpress:php8.2-apache
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl cron nano sendmail-bin sendmail rsyslog
 
-# Install CH CA certificate
-RUN curl -so /etc/ssl/certs/wisvch.crt https://ch.tudelft.nl/certs/wisvch.crt && \
-    chmod 644 /etc/ssl/certs/wisvch.crt && \
-    update-ca-certificates
-
 # Download and install WP-CLI
 RUN curl  -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp-cli.phar && \
