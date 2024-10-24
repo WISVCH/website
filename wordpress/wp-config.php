@@ -19,3 +19,8 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARD
     $_SERVER['HTTPS'] = 'on';
     $_SERVER['SERVER_PORT'] = 443;
 }
+
+// Set varnish cache ip for purge plugin
+if (getenv('VARNISH_SVC_SERVICE_HOST')) {
+    define('VHP_VARNISH_IP', getenv('VARNISH_SVC_SERVICE_HOST'));
+}
