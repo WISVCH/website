@@ -13,6 +13,10 @@ if (isset($_SERVER['HTTP_HOST'])) {
     $_SERVER['HTTP_HOST'] = substr($_SERVER['HTTP_HOST'], 0, strrpos($_SERVER['HTTP_HOST'], ':'));
 }
 
+if (!isset($_SERVER['HTTP_HOST']) || $_SERVER['HTTP_HOST'] == "") {
+    $_SERVER['HTTP_HOST'] = getenv('HTTP_HOST');
+}
+
 // Enable HTTPS
 define('FORCE_SSL_ADMIN', true);
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
