@@ -45,6 +45,6 @@ jobs:
         if: >-
           contains(steps.metadata.outputs.dependency-names, 'wordpress') &&
           steps.metadata.outputs.update-type == 'version-update:semver-patch'
-        run: gh workflow run docker.yml --ref master
+        run: gh workflow run docker.yml --repo "$GITHUB_REPOSITORY" --ref master
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
