@@ -1,6 +1,7 @@
 name: Docker
 on:
   push:
+  pull_request:
   schedule:
   - cron: '54 2 2 * *'
   workflow_dispatch:
