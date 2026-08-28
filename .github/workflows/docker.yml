@@ -30,7 +30,7 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: ghcr.io/wisvch/website
-          tags: type=sha, prefix={{date 'YYYYMMDD'}}-
+          tags: type=sha, prefix={{date 'YYYYMMDD'}}-${{ github.run_number }}-
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
         with:
