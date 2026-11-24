@@ -1,5 +1,5 @@
 # Pin WordPress so Dependabot can propose and classify security patch updates.
-FROM wordpress:7.1.5-php8.5-apache
+FROM wordpress:7.1.5-php8.5-apache@sha256:05feeed1131c96103154f7a7a405a983a5b65a197b812f68cade590d3189d1de
 
 # Install required packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
